@@ -1,0 +1,1 @@
+UML: Қорғауға class diagram (Vehicle, subclasses, Customer, Rental) + layered architecture диаграмма қоясың.
