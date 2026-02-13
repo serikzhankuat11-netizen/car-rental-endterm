@@ -1,51 +1,174 @@
-# Car Rental Endterm REST API (100/100 Template)
+ Car Rental REST API
 
-Бұл жоба **Endterm Project** талаптарына толық сәйкес келеді:
-- Spring Boot REST API (Controller → Service → Repository → DB)
-- Design Patterns: Singleton, Factory, Builder
-- Component Principles: REP, CCP, CRP
-- SOLID + Global Exception Handling
-- PostgreSQL (JDBC арқылы)
+Endterm Project – Design Patterns & Component Principles
 
-## 1) How to run
-1. PostgreSQL-та база аш: `car_rental_db`
-2. `src/main/resources/application.properties` ішінде username/password дұрыс қой.
-3. Қосымшада автоматты түрде `schema.sql` іске қосылады (кестелер құрылады).
-4. Run:
-```bash
+ Project Overview
+
+This project is a Spring Boot REST API for managing a car rental system.
+It demonstrates clean architecture principles, layered design, and practical usage of design patterns.
+
+The system allows managing:
+
+Customers
+
+Vehicles
+
+Rentals
+
+All operations were tested using Postman and connected to a PostgreSQL database.
+
+ Architecture
+
+The project follows a layered architecture:
+
+Controller → Service → Repository → Database
+
+Layers:
+
+Controller – Handles HTTP requests (REST endpoints)
+
+Service – Business logic layer
+
+Repository (JDBC) – Data access using Spring JDBC Template
+
+PostgreSQL – Persistent storage
+
+This separation ensures:
+
+Single Responsibility Principle
+
+Low coupling
+
+High cohesion
+
+Easy maintainability
+
+ Technologies Used
+
+Java 17
+
+Spring Boot 3.3
+
+Spring Web
+
+Spring JDBC
+
+PostgreSQL
+
+Maven
+
+Postman (API testing)
+
+ Project Structure
+com.example.carrental
+ ├── controller
+ ├── service
+ ├── repository
+ ├── model
+ ├── dto
+ ├── exception
+ └── Application.java
+
+ REST Endpoints
+🔹 Customers
+Method	Endpoint	Description
+GET	/api/v1/customers	Get all customers
+GET	/api/v1/customers/{id}	Get customer by ID
+POST	/api/v1/customers	Create new customer
+PUT	/api/v1/customers/{id}	Update customer
+DELETE	/api/v1/customers/{id}	Delete customer
+- Example Request (POST Customer)
+{
+  "firstName": "Akzhan",
+  "lastName": "Saitama",
+  "email": "akzha@mail.com"
+}
+
+
+Response:
+
+{
+  "id": 1,
+  "firstName": "Akzhan",
+  "lastName": "Saitama",
+  "phone": null,
+  "email": "akzha@mail.com"
+}
+
+ Design Patterns Used
+1️⃣ Repository Pattern
+
+Encapsulates data access logic and separates it from business logic.
+
+2️⃣ DTO Pattern
+
+Used for request and response objects to avoid exposing internal models.
+
+3️⃣ Layered Architecture
+
+Ensures separation of concerns and maintainable structure.
+
+ Testing
+
+All endpoints were tested using Postman.
+CRUD operations return correct HTTP status codes:
+
+200 OK
+
+201 Created
+
+204 No Content
+
+404 Not Found
+
+500 Internal Server Error (handled via GlobalExceptionHandler)
+
+ Database
+
+PostgreSQL database:
+
+car_rental_db
+
+
+Connection configured in:
+
+application.properties
+
+ How to Run
+
+Start PostgreSQL
+
+Create database:
+
+car_rental_db
+
+
+Configure credentials in application.properties
+
+Run:
+
 mvn spring-boot:run
-```
 
-## 2) Base URL
-`http://localhost:8080/api/v1`
 
-## 3) Endpoints (қысқаша)
-### Vehicles
-- GET `/vehicles`
-- GET `/vehicles/{id}`
-- POST `/vehicles`
-- PUT `/vehicles/{id}`
-- DELETE `/vehicles/{id}`
+Test using Postman:
 
-### Customers
-- GET `/customers`
-- GET `/customers/{id}`
-- POST `/customers`
-- PUT `/customers/{id}`
-- DELETE `/customers/{id}`
+http://localhost:8080/api/v1/customers
 
-### Rentals
-- GET `/rentals`
-- GET `/rentals/{id}`
-- POST `/rentals`
-- DELETE `/rentals/{id}`  (cancel)
+ Project Goals Achieved
 
-## 4) Design Patterns қай жерде?
-- Singleton: `patterns/singleton/AppConfig`, `patterns/singleton/LoggerService`
-- Factory: `patterns/factory/VehicleFactory` (ECONOMY/SUV/LUXURY → subclass)
-- Builder: `patterns/builder/RentalBuilder` (күрделі Rental объектісі)
+Clean layered architecture
 
-## 5) Database Schema
-`src/main/resources/schema.sql`
+Practical REST API implementation
 
-> Ескерту: Бұл шаблон — қорғауға, README мен код құрылымын 100 бал деңгейіне жеткізуге арналған. Өз Assignment 3/4 логикаң болса, service/repo бөліміне қосып кеңейтесің.
+Database integration using JDBC
+
+Proper error handling
+
+Demonstration of design patterns
+
+Full CRUD functionality
+
+ Author
+
+Serik Zhankuat
+Endterm Project – Software Architecture & Design Patterns
